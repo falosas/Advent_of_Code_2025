@@ -1,1 +1,1 @@
-Se encuentran aqui los archivos correspondientes a ambas partes del dia 1
+Los codigos y hoja de datos de cada dia se encuentran en los diferentes branchs subyacentes del main
