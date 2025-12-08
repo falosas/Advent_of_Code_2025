@@ -51,3 +51,9 @@ Cuidado con las herramientas: Aprendí que el operador % en C++ no funciona igua
 
 Cambio de Perspectiva: Lo más importante fue aprender que, a veces, para resolver un problema circular (un dial), es más fácil tratarlo como un problema lineal (una recta). 
 Cambiar la forma de ver el problema simplificó todo mi código.
+
+
+INSTRUCCIONES DE EJECUCION DE CODIGOS:  
+1 - Poner todos los archivos en una misma carpeta
+2 - Ejecutar en terminal dentro de la capeta el comando make bin/AOC1 o make bin/AOC1-2 (Dependiendo del programa que se quiera ejecutar)
+3 - Ejecutar comando ./bin/AOC1 datosAOC1.txt o ./bin/AOC1-2 datosAOC1.txt
