@@ -2,7 +2,6 @@ Memoria Advent of Code 2025 - Día 5
 
 Problema: Day 5 - Cafeteria (Part 1 & Part 2)
 
-Lenguaje: C++
 1. Justificación
 
 Elegí este problema porque representa un punto de inflexión respecto a los ejercicios anteriores: es un problema de optimización de rangos. Es el escenario perfecto para demostrar que la fuerza bruta es inviable cuando los datos escalan, y para aplicar estrategias avanzadas como Divide y Vencerás y algoritmos de Barrido de Línea.
