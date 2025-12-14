@@ -15,77 +15,79 @@ Abstracción del Grafo: Traté la matriz 2D como un grafo dirigido implícito. C
 
 Parte 1 (Fusión de Estados - BFS): El objetivo era contar cuántos divisores únicos se activan.
 
-    La clave aquí es que los rayos pueden fusionarse. Si dos rayos llegan al mismo punto, se convierten en uno solo.
+   La clave aquí es que los rayos pueden fusionarse. Si dos rayos llegan al mismo punto, se convierten en uno solo.
 
-    Implementé un algoritmo BFS utilizando una cola (std::queue).
+   Implementé un algoritmo BFS utilizando una cola (std::queue).
 
-    Para evitar procesar el mismo rayo infinitas veces, utilicé una matriz de control visitados. Si un rayo intenta nacer en una coordenada ya procesada, se descarta inmediatamente. Esto colapsa el espacio de búsqueda.
+   Para evitar procesar el mismo rayo infinitas veces, utilicé una matriz de control visitados. Si un rayo intenta nacer en una coordenada ya procesada, se descarta inmediatamente. Esto colapsa el espacio de búsqueda.
 
 Parte 2 (Interpretación de Muchos Mundos - DP): El objetivo cambió a contar el número total de líneas temporales.
 
-    Aquí los rayos NO se fusionan. Si dos caminos llegan al mismo punto, sus historias se suman.
+   Aquí los rayos NO se fusionan. Si dos caminos llegan al mismo punto, sus historias se suman.
 
-    La fuerza bruta es inviable. Cambié la estrategia a Programación Dinámica.
+   La fuerza bruta es inviable. Cambié la estrategia a Programación Dinámica.
 
-    Utilicé una función recursiva con una tabla de memorización (memo[r][c]). 
-    Cada vez que calculo cuántas líneas temporales genera un divisor, guardo el resultado. Si vuelvo a pasar por ahí, devuelvo el dato en O(1).
+   Utilicé una función recursiva con una tabla de memorización (memo[r][c]). 
+   Cada vez que calculo cuántas líneas temporales genera un divisor, guardo el resultado. Si vuelvo a pasar por ahí, devuelvo el dato en O(1).
 
 3. Calidad Algorítmica y Eficiencia
 
 La prioridad fue transformar un problema de crecimiento exponencial en uno de complejidad polinómica.
 
-    Complejidad Temporal:
+   Complejidad Temporal:
 
-    En la Parte 1, cada celda se encola y procesa como máximo una vez gracias a la matriz de visitados.
+   En la Parte 1, cada celda se encola y procesa como máximo una vez gracias a la matriz de visitados.
 
-    En la Parte 2, gracias a la memorización, cada divisor calcula su sub-árbol recursivo una única vez. Las siguientes consultas son instantáneas.
+   En la Parte 2, gracias a la memorización, cada divisor calcula su sub-árbol recursivo una única vez. Las siguientes consultas son instantáneas.
 
-    Esto garantiza que el tiempo de ejecución sea lineal respecto al tamaño del mapa, independientemente de cuántos millones de líneas temporales se generen.
+   Esto garantiza que el tiempo de ejecución sea lineal respecto al tamaño del mapa, independientemente de cuántos millones de líneas temporales se generen.
 
-    Gestión de Memoria:
+   Gestión de Memoria:
 
-    Utilicé matrices nativas (vector<vector<T>>) en lugar de mapas (std::map) para la caché y los visitados, garantizando un acceso a memoria más rápido.
+   Utilicé matrices nativas (vector<vector<T>>) en lugar de mapas (std::map) para la caché y los visitados, garantizando un acceso a memoria más rápido.
 
-    La estructura struct Punto permite pasar coordenadas por valor de forma ligera, evitando la sobrecarga de punteros.
+   La estructura struct Punto permite pasar coordenadas por valor de forma ligera, evitando la sobrecarga de punteros.
 
 4. Diseño y Claridad del Código
 
-    En la parte 1 el diseño prioriza la legibilidad y el acceso directo a memoria, evitando abstracciones innecesarias.
+   En la parte 1 el diseño prioriza la legibilidad y el acceso directo a memoria, evitando abstracciones innecesarias.
     
-    Estructuras de Acceso Directo:
+   Estructuras de Acceso Directo:
 
-    En lugar de utilizar contenedores asociativos complejos para rastrear elementos únicos, opté por matrices de booleanos (vector<vector<bool>>).
+   En lugar de utilizar contenedores asociativos complejos para rastrear elementos únicos, opté por matrices de booleanos (vector<vector<bool>>).
 
-    Esto simplifica el código: para saber si un rayo ya pasó por (r, c), simplemente consulto visitados[r][c]. Es más rápido para el procesador y más fácil de leer para el programador.
+   Esto simplifica el código: para saber si un rayo ya pasó por (r, c), simplemente consulto visitados[r][c]. Es más rápido para el procesador y más fácil de leer para el programador.
 
-    Desacoplamiento de Lógica: El algoritmo separa claramente dos responsabilidades dentro del bucle principal:
+   Desacoplamiento de Lógica: El algoritmo separa claramente dos responsabilidades dentro del bucle principal:
 
-    Gestión de la Cola (BFS): Administra cuándo se procesa un nuevo rayo.
+   Gestión de la Cola (BFS): Administra cuándo se procesa un nuevo rayo.
 
-    Simulación Física: Un bucle while interno dedicado exclusivamente a mover el rayo hacia abajo hasta que choca.
+   Simulación Física: Un bucle while interno dedicado exclusivamente a mover el rayo hacia abajo hasta que choca.
 
-    Esta separación permite depurar la física del movimiento independientemente de la lógica de exploración del grafo.
+   Esta separación permite depurar la física del movimiento independientemente de la lógica de exploración del grafo.
     
-    En la parte 2 el código se reestructuró para seguir principios sólidos de ingeniería de software:
+   En la parte 2 el código se reestructuró para seguir principios sólidos de ingeniería de software:
 
-    Modularización: Extraje la lógica de búsqueda del punto inicial a su propia función buscar_S, devolviendo un struct Punto.
+   Modularización: Extraje la lógica de búsqueda del punto inicial a su propia función buscar_S, devolviendo un struct Punto.
 
-    Semántica: El uso de struct Punto {int r, c;} hace que el código sea autodocumentado. Es mucho más legible.
+   Semántica: El uso de struct Punto {int r, c;} hace que el código sea autodocumentado. Es mucho más legible.
 
-    Control de Flujo: En la parte 2, la recursividad está limpia y clara: Caso Base (salir del mapa), Caso Memorizado (retorno rápido) y Caso Recursivo (cálculo real).
+   Control de Flujo: En la parte 2, la recursividad está limpia y clara: Caso Base (salir del mapa), Caso Memorizado (retorno rápido) y Caso Recursivo (cálculo real).
 
 5. Alternativas Descartadas
 
-    Simulación Pura (Step-by-step): Intentar mover cada partícula paso a paso en un bucle infinito. 
-    Se descartó porque en la Parte 2, el número de partículas se duplica en cada divisor, lo que desbordaría la memoria RAM y el tiempo de CPU en segundos.
+   Simulación Pura (Step-by-step): Intentar mover cada partícula paso a paso en un bucle infinito. 
+   Se descartó porque en la Parte 2, el número de partículas se duplica en cada divisor, lo que desbordaría la memoria RAM y el tiempo de CPU en segundos.
 
-    DFS sin memorización: Habría resultado en un algoritmo correcto pero extremadamente lento (O(2N)), recalculando las mismas ramas del árbol millones de veces.
+   DFS sin memorización: Habría resultado en un algoritmo correcto pero extremadamente lento (O(2N)), recalculando las mismas ramas del árbol millones de veces.
 
-    BFS para la Parte 2: Aunque posible, acumular sumas de caminos "hacia arriba" con BFS es más complejo de implementar y propenso a errores que la recursividad natural de "hacia abajo" con DP.
+   BFS para la Parte 2: Aunque posible, acumular sumas de caminos "hacia arriba" con BFS es más complejo de implementar y propenso a errores que la recursividad natural de "hacia abajo" con DP.
 
 6. Valoración Personal
 
-Este ejercicio ha sido una lección sobre cómo un cambio sutil en las reglas (de "fusión de rayos" a "suma de historias") obliga a cambiar completamente la arquitectura del algoritmo (de BFS iterativo a DP recursivo). He reforzado la importancia de la memorización: una simple tabla de enteros (memo) es la diferencia entre un programa que tarda 3 milisegundos y uno que tarda 3 siglos. También he mejorado mi disciplina de código al forzar la separación de responsabilidades (buscar_S) en lugar de aglomerar todo en el main.
+Este ejercicio ha sido una lección sobre cómo un cambio sutil en las reglas (de "fusión de rayos" a "suma de historias") obliga a cambiar completamente la arquitectura del algoritmo (de BFS iterativo a DP recursivo). 
+He reforzado la importancia de la memorización: una simple tabla de enteros (memo) es la diferencia entre un programa que tarda 3 milisegundos y uno que tarda 3 siglos. 
+También he mejorado mi disciplina de código al forzar la separación de responsabilidades (buscar_S) en lugar de aglomerar todo en el main.
 
 7. INSTRUCCIONES DE EJECUCION DE CODIGOS
 
