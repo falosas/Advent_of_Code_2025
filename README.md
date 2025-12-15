@@ -88,7 +88,7 @@ La combinación de Kruskal + DSU ha demostrado ser una herramienta indispensable
 
 7. INSTRUCCIONES DE EJECUCION DE CODIGOS
 
-    Poner todos los archivos (main.cpp, datosAOC8.txt, Makefile si lo hubiera) en una misma carpeta.
+    Poner todos los archivos (main.cpp, datosAOC8.txt, Makefile) en una misma carpeta.
 
     Para compilar, ejecutar en la terminal:
 
