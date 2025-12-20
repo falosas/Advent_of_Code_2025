@@ -2,7 +2,10 @@
 
 Este repositorio contiene mis soluciones para el [Advent of Code](https://adventofcode.com/), implementadas principalmente en **C++** con un enfoque en eficiencia y gestión de memoria manual.
 
-**Nota:** El objetivo de este proyecto es resolver los puzzles algorítmicos diarios manteniendo un código limpio y modular, organizado por carpetas.
+Se han realizado los códigos correspondientes para solventar los problemas respectivos a los dia 1, 5, 7, 8 y 11. 
+Incluyendo las partes 1 y 2 de los problemas de cada uno de estos días.
+
+**Nota:** El objetivo es resolver los puzzles algorítmicos diarios manteniendo un código limpio y modular, implementando las técnicas de programación vistas en clase, tales como DyV, programación dinámica, tablas hash, arboles y grafos.
 
 ## Estructura del Proyecto
 
