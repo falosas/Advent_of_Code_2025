@@ -38,6 +38,7 @@ bin/AOC11-2: AOC11-2.cpp
 	mkdir -p bin
 	g++ -o bin/AOC11-2 AOC11-2.cpp
 
+
 clean:
 	rm -r *.o *.gch bin
 
