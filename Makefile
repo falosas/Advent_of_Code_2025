@@ -22,6 +22,14 @@ bin/AOC7-2: AOC7-2.cpp
 	mkdir -p bin
 	g++ -o bin/AOC7-2 AOC7-2.cpp
 
+bin/AOC8: AOC8.cpp
+	mkdir -p bin
+	g++ -o bin/AOC8 AOC8.cpp
+
+bin/AOC8-2: AOC8-2.cpp
+	mkdir -p bin
+	g++ -o bin/AOC8-2 AOC8-2.cpp
+
 
 clean:
 	rm -r *.o *.gch bin
