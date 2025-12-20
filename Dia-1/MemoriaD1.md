@@ -1,5 +1,4 @@
 Memoria Advent of Code 2025 - Día 1
-Problema: Day 1 - Secret Entrance (Part 1 & Part 2) Lenguaje: C++
 
 1. Justificación
 Elegí este problema porque, aunque parece sencillo, esconde una trampa técnica importante: cómo maneja C++ los números negativos. Es ideal para demostrar dos habilidades clave:
@@ -53,7 +52,20 @@ Cambio de Perspectiva: Lo más importante fue aprender que, a veces, para resolv
 Cambiar la forma de ver el problema simplificó todo mi código.
 
 
-INSTRUCCIONES DE EJECUCION DE CODIGOS:  
-1 - Poner todos los archivos en una misma carpeta
-2 - Ejecutar en terminal dentro de la capeta el comando make bin/AOC1 o make bin/AOC1-2 (Dependiendo del programa que se quiera ejecutar)
-3 - Ejecutar comando ./bin/AOC1 datosAOC1.txt o ./bin/AOC1-2 datosAOC1.txt
+7. Instrucciones de compilación y ejecución
+
+    1. Estructura de Directorios Asegúrate de mantener la estructura del proyecto. El archivo Makefile debe estar en la raíz, y los códigos fuente junto con sus archivos de datos dentro de sus carpetas correspondientes.
+
+    2. Compilación Desde la terminal en la carpeta raíz del proyecto, ejecuta una de las siguientes opciones:
+
+    Compilar programas:
+
+      make bin/AOC1
+    
+      make bin/AOC1-2
+    
+    3. Ejecución, el programa requiere que le indiques la ruta del archivo de datos como argumento. Ejecuta el comando referenciando el binario y la ruta relativa del archivo de texto:
+
+      ./bin/AOC1 Dia-1/datosAOC1.txt
+    
+      ./bin/AOC1-2 Dia-1/datosAOC1.txt

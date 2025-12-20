@@ -119,10 +119,14 @@ long long tramos(int startNode, int endNode, const Grafo& grafo, int totalNodes)
 	// Llamamos a la recursión con la memoria limpia
 	return caminos(startNode, endNode, grafo, memo);
 }
-void solucion() 
+void solucion(const std::string& ruta_archivo) 
 {
-	std::ifstream file("datosAOC11.txt");
-	if (!file.is_open()) return;
+	std::ifstream file(ruta_archivo);
+	if (!file.is_open())
+	{    
+		std::cerr << "No se pudo abrir '" << ruta_archivo << "'.\n";
+		return;
+	}
 
 	TablaHash mapa;
 	int ids = 0; // Generador de IDs 
@@ -161,7 +165,7 @@ void solucion()
 	int fft = mapa.getID("fft");
 
 	if (svr == -1 || out == -1 || dac == -1 || fft == -1)
-       	{
+	{
 		std::cout << "Error: Faltan nodos clave en el input (svr, out, dac o fft)." << std::endl;
 		return;
 	}
@@ -182,10 +186,15 @@ void solucion()
 	std::cout << "Total de caminos validos: " << total << std::endl;
 }
 
-int main() 
+int main(int argc, char* argv[]) 
 {
 	std::ios_base::sync_with_stdio(false);
 	std::cin.tie(NULL);
-	solucion();
+	if (argc < 2)
+	{
+		std::cerr << "Uso correcto: " << argv[0] << " <ruta_del_archivo>\n";
+		return 1; // Error, salimos del programa
+	}
+	solucion(argv[1]);
 	return 0;
 }

@@ -22,7 +22,7 @@ long long rayos(const std::vector<std::string>& mapa)
 	for (int r = 0; r < filas; r++) 
 	{
 		for (int c = 0; c < cols; c++)
-	       	{
+		{
 			if (mapa[r][c] == 'S'){inicio = {r, c};}
 		}
 	}
@@ -39,7 +39,7 @@ long long rayos(const std::vector<std::string>& mapa)
 	std::vector<std::vector<bool>> choque(filas, std::vector<bool>(cols, false));
 
 	while (!cola.empty())
-       	{
+	{
 		Punto actual = cola.front();
 		cola.pop();
 
@@ -49,7 +49,7 @@ long long rayos(const std::vector<std::string>& mapa)
 
 		// El rayo baja hasta chocar o salir del mapa
 		while (r < filas)
-	       	{
+		{
 			char celda = mapa[r][c];
 
 			if (celda == '^') 
@@ -57,7 +57,7 @@ long long rayos(const std::vector<std::string>& mapa)
 				// Choque
 				// Si es la primera vez que golpeamos este divisor, sumamos 1
 				if (!choque[r][c])
-			       	{
+				{
 					choque[r][c] = true;
 					divisiones++;
 				}
@@ -76,7 +76,7 @@ long long rayos(const std::vector<std::string>& mapa)
 				if (c + 1 < cols) 
 				{
 					if (!visitado[r][c + 1])
-				       	{
+					{
 						visitado[r][c + 1] = true;
 						cola.push({r, c + 1});
 					}
@@ -91,16 +91,27 @@ long long rayos(const std::vector<std::string>& mapa)
 	return divisiones;
 }
 
-int main() 
+int main(int argc, char* argv[]) 
 {
-	std::ifstream file("datosAOC7.txt");
-	if (!file.is_open()) return 1;
+	// Comprobamos si el usuario introdujo la ruta del archivo
+	if (argc < 2)
+	{
+		std::cout << "Uso correcto: " << argv[0] << " <ruta_del_archivo>" << std::endl;
+		return 1;
+	}
 
+	// Abrimos el archivo
+	std::ifstream file(argv[1]);
+	if (!file.is_open())
+	{
+		std::cout << "No se pudo abrir " << argv[1]  << std::endl;
+		return 1;
+	}
 	std::vector<std::string> mapa;
 	std::string line;
 
 	while (std::getline(file, line))
-       	{
+	{
 		if (!line.empty()) mapa.push_back(line);
 	}
 	file.close();

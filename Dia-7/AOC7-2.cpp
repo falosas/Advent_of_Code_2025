@@ -78,12 +78,20 @@ long long lineas(const std::vector<std::string>& mapa, int start_r, int start_c)
 	return 1;
 }
 
-int main() 
+int main(int argc, char* argv[]) 
 {
-	std::ifstream file("datosAOC7.txt");
-	if (!file.is_open()) 
+	// Comprobamos si el usuario introdujo la ruta del archivo
+	if (argc < 2)
 	{
-		std::cout << "Error abriendo archivo." << std::endl;
+		std::cout << "Uso correcto: " << argv[0] << " <ruta_del_archivo>" << std::endl;
+		return 1;
+	}
+
+	// Abrimos el archivo
+	std::ifstream file(argv[1]);
+	if (!file.is_open())
+	{
+		std::cout << "No se pudo abrir " << argv[1]  << std::endl;
 		return 1;
 	}
 
@@ -102,7 +110,7 @@ int main()
 
 	// Inicializamos la tabla de memoización con -1
 	memo.assign(filas, std::vector<long long>(cols, -1));
-	
+
 	//Llamada a funcion de busqueda del comienzo
 	Punto inicio = buscar_S(mapa);
 

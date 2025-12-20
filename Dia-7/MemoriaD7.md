@@ -1,6 +1,5 @@
 Memoria Advent of Code 2025 - Día 7
 
-Problema: Day 7 - Laboratories (Part 1 & Part 2) Lenguaje: C++
 1. Justificación
 
 Seleccioné este problema porque es el ejemplo canónico de Modelado de Grafos en Rejillas. 
@@ -87,16 +86,20 @@ La prioridad fue transformar un problema de crecimiento exponencial en uno de co
 
 Este ejercicio ha sido una lección sobre cómo un cambio sutil en las reglas (de "fusión de rayos" a "suma de historias") obliga a cambiar completamente la arquitectura del algoritmo (de BFS iterativo a DP recursivo). He reforzado la importancia de la memorización: una simple tabla de enteros (memo) es la diferencia entre un programa que tarda 3 milisegundos y uno que tarda 3 siglos. También he mejorado mi disciplina de código al forzar la separación de responsabilidades (buscar_S) en lugar de aglomerar todo en el main.
 
-7. INSTRUCCIONES DE EJECUCION DE CODIGOS
+7. Instrucciones de compilación y ejecución
 
-    Poner todos los archivos (main.cpp, datosAOC7.txt, Makefile si lo hubiera) en una misma carpeta.
+    1. Estructura de Directorios Asegúrate de mantener la estructura del proyecto. El archivo Makefile debe estar en la raíz, y los códigos fuente junto con sus archivos de datos dentro de sus carpetas correspondientes.
 
-    Para compilar, ejecutar en la terminal:
+    2. Compilación Desde la terminal en la carpeta raíz del proyecto, ejecuta una de las siguientes opciones:
 
-    make bin/AOC7 (Para el programa de la Parte 1 - BFS)
-    make bin/AOC7-2 (Para el programa de la Parte 2 - DP)
+    Compilar programas:
 
-    Ejecutar el programa:
+      make bin/AOC7
+    
+      make bin/AOC7-2
+    
+    3. Ejecución, el programa requiere que le indiques la ruta del archivo de datos como argumento. Ejecuta el comando referenciando el binario y la ruta relativa del archivo de texto:
 
-    ./bin/AOC7 (Buscará datosAOC7.txt)
-    ./bin/AOC7-2
+      ./bin/AOC7 Dia-7/datosAOC7.txt
+    
+      ./bin/AOC7-2 Dia-7/datosAOC7.txt

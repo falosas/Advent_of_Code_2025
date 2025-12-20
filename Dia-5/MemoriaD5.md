@@ -1,7 +1,5 @@
 Memoria Advent of Code 2025 - Día 5
 
-Problema: Day 5 - Cafeteria (Part 1 & Part 2)
-
 1. Justificación
 
 Elegí este problema porque representa un punto de inflexión respecto a los ejercicios anteriores: es un problema de optimización de rangos. Es el escenario perfecto para demostrar que la fuerza bruta es inviable cuando los datos escalan, y para aplicar estrategias avanzadas como Divide y Vencerás y algoritmos de Barrido de Línea.
@@ -60,16 +58,20 @@ Fuerza Bruta: Iterar todos los rangos originales para cada ID. Se descartó porq
 
 Este ejercicio ha sido fundamental para entender la diferencia entre Datos Crudos y Datos Procesados. He aprendido que "invertir tiempo" ordenando y limpiando los datos al principio (Fusión de Intervalos) ahorra una cantidad inmensa de tiempo después. También me ha servido para practicar la lectura robusta de archivos de texto con formatos mixtos y la importancia de no cargar en memoria datos que no se van a utilizar.
 
-7. INSTRUCCIONES DE EJECUCION DE CODIGOS
+7. Instrucciones de compilación y ejecución
 
-Poner todos los archivos (main.cpp, datosAOC5.txt, Makefile si lo hubiera) en una misma carpeta.
+    1. Estructura de Directorios Asegúrate de mantener la estructura del proyecto. El archivo Makefile debe estar en la raíz, y los códigos fuente junto con sus archivos de datos dentro de sus carpetas correspondientes.
 
-Para compilar, ejecutar en la terminal:
+    2. Compilación Desde la terminal en la carpeta raíz del proyecto, ejecuta una de las siguientes opciones:
 
-make bin/AOC5 (Para el programa de la Parte 1)
-make bin/AOC5-2 (Para el programa de la Parte 2)
+    Compilar programas:
 
-Ejecutar el programa:
+      make bin/AOC5
+    
+      make bin/AOC5-2
+    
+    3. Ejecución, el programa requiere que le indiques la ruta del archivo de datos como argumento. Ejecuta el comando referenciando el binario y la ruta relativa del archivo de texto:
 
-./bin/AOC5
-./bin/AOC5-2
+      ./bin/AOC5 Dia-5/datosAOC5.txt
+    
+      ./bin/AOC5-2 Dia-5/datosAOC5.txt

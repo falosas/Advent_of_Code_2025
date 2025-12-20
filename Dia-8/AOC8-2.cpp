@@ -45,7 +45,7 @@ bool unir(int i, int j, std::vector<int>& padre, std::vector<int>& tamano)
 	int raiz_j = encontrar_raiz(j, padre);
 
 	if (raiz_i != raiz_j)
-       	{
+	{
 		// Optimización: Unir el árbol pequeño al grande
 		if (tamano[raiz_i] < tamano[raiz_j]) {std::swap(raiz_i, raiz_j);}
 		padre[raiz_j] = raiz_i; // El padre de j ahora es i
@@ -55,22 +55,34 @@ bool unir(int i, int j, std::vector<int>& padre, std::vector<int>& tamano)
 	return false; //Ya estaban conectados
 }
 
-int main() 
+int main(int argc, char* argv[]) 
 {
-	std::ifstream file("datosAOC8.txt");
-	if (!file.is_open()) return 1;
+	// Comprobamos si el usuario introdujo la ruta del archivo
+	if (argc < 2)
+	{
+		std::cout << "Uso correcto: " << argv[0] << " <ruta_del_archivo>" << std::endl;
+		return 1;
+	}
+
+	// Abrimos el archivo
+	std::ifstream file(argv[1]);
+	if (!file.is_open())
+	{
+		std::cout << "No se pudo abrir " << argv[1]  << std::endl;
+		return 1;
+	}
 
 	std::vector<Punto> puntos;
 	std::string line;
 	int id_counter = 0;
 
 	while (std::getline(file, line))
-       	{
+	{
 		if (line.empty()) continue;
 		Punto p;
 		p.id = id_counter++;
 		if (sscanf(line.c_str(), "%lld,%lld,%lld", &p.x, &p.y, &p.z) == 3)
-	       	{
+		{
 			puntos.push_back(p);
 		}
 	}
@@ -84,7 +96,7 @@ int main()
 	aristas.reserve(N * (N - 1) / 2);
 
 	for (int i = 0; i < N; ++i)
-       	{
+	{
 		for (int j = i + 1; j < N; ++j) 
 		{
 			long long d = distanciasq(puntos[i], puntos[j]);
@@ -102,7 +114,7 @@ int main()
 
 	// Procesamos aristas hasta que todo sea un solo circuito
 	for (const auto& arista : aristas)
-       	{
+	{
 		// Intentamos unir
 		if (unir(arista.u, arista.v, padre, tamano)) 
 		{
@@ -116,7 +128,7 @@ int main()
 				long long resultado = x1 * x2;
 
 				std::cout << "Ultima conexion realizada entre nodos: " << arista.u << " y "
-				          << arista.v << std::endl;
+					<< arista.v << std::endl;
 				std::cout << "Resultado (Producto de X): " << resultado << std::endl;
 				return 0; 
 			}

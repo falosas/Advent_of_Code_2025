@@ -1,4 +1,4 @@
-Informe Técnico: Advent of Code 2025 - Día 11
+Memoria Advent of Code 2025 - Día 11
 
 1. Justificación de la Elección
 
@@ -96,17 +96,21 @@ Al implementar la traducción a IDs numéricos, el problema se transformó en un
 
 También aprendí en la Parte 2 que a veces la solución no es programar más lógica compleja, sino aplicar lógica matemática (dividir el problema en tramos) para reutilizar el código que ya tenía funcionando.
 
-7. Instrucciones de ejecución de códigos
+7. Instrucciones de compilación y ejecución
 
-Poner todos los archivos (main.cpp, datosAOC11.txt, Makefile) en una misma carpeta.
+    1. Estructura de Directorios Asegúrate de mantener la estructura del proyecto. El archivo Makefile debe estar en la raíz, y los códigos fuente junto con sus archivos de datos dentro de sus carpetas correspondientes.
 
-Para compilar, ejecutar en la terminal:
+    2. Compilación Desde la terminal en la carpeta raíz del proyecto, ejecuta una de las siguientes opciones:
 
- make bin/AOC11 
- make bin/AOC11-2
+    Compilar programas:
 
-Ejecutar el programa:
+      make bin/AOC11
+    
+      make bin/AOC11-2
+    
+    3. Ejecución, el programa requiere que le indiques la ruta del archivo de datos como argumento. Ejecuta el comando referenciando el binario y la ruta relativa del archivo de texto:
 
- ./bin/AOC11
- ./bin/AOC11-2
+      ./bin/AOC11 Dia-11/datosAOC11.txt
+    
+      ./bin/AOC11-2 Dia-11/datosAOC11.txt
 

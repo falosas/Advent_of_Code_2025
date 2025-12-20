@@ -53,17 +53,29 @@ void unir(int i, int j, std::vector<int>& padre, std::vector<int>& tamano)
 	}
 }
 
-int main() 
+int main(int argc, char* argv[]) 
 {
-	std::ifstream file("datosAOC8.txt");
-	if (!file.is_open()) return 1;
+	// Comprobamos si el usuario introdujo la ruta del archivo
+	if (argc < 2)
+	{
+		std::cout << "Uso correcto: " << argv[0] << " <ruta_del_archivo>" << std::endl;
+		return 1;
+	}
+
+	// Abrimos el archivo
+	std::ifstream file(argv[1]);
+	if (!file.is_open())
+	{
+		std::cout << "No se pudo abrir " << argv[1]  << std::endl;
+		return 1;
+	}
 
 	std::vector<Punto> puntos;
 	std::string line;
 	int id_counter = 0;
 
 	while (std::getline(file, line))
-       	{
+	{
 		if (line.empty()) continue;
 
 		Punto p;
@@ -87,7 +99,7 @@ int main()
 	for (int i = 0; i < N; ++i) 
 	{
 		for (int j = i + 1; j < N; ++j)
-	       	{
+		{
 			long long d = distsq(puntos[i], puntos[j]);
 			aristas.push_back({i, j, d});
 		}
@@ -103,7 +115,7 @@ int main()
 	int limite = std::min((int)aristas.size(), 1000);
 
 	for (int i = 0; i < limite; ++i)
-       	{
+	{
 		unir(aristas[i].u, aristas[i].v, padre, tamano);
 	}
 
@@ -116,7 +128,7 @@ int main()
 		// Solo nos interesan las raíces de los grupos para no contar duplicados
 		int raiz = encontrar_raiz(i, padre);
 		if (!procesado[raiz])
-	       	{
+		{
 			tamanos_finales.push_back(tamano[raiz]);
 			procesado[raiz] = true;
 		}

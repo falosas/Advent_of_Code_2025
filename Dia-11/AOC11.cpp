@@ -23,10 +23,10 @@ class TablaHash
 		// Función Hash clasica
 		// Convierte "abc" en un número entero
 		unsigned int hashFunction(const std::string& str)
-	       	{
+		{
 			unsigned int hash = 5381;
 			for (char c : str)
-		       	{
+			{
 				hash = ((hash << 5) + hash) + c;
 			}
 			return hash % size;
@@ -35,15 +35,15 @@ class TablaHash
 	public:
 		// Constructor: inicio a nullptr
 		TablaHash() {for (int i = 0; i < size; ++i) tabla[i] = nullptr;}
-		
+
 		// Destructor: limpieza de memoria
 		~TablaHash() 
 		{
 			for (int i = 0; i < size; ++i)
-		       	{
+			{
 				HashNode* entry = tabla[i];
 				while (entry != nullptr)
-			       	{
+				{
 					HashNode* prev = entry;
 					entry = entry->next;
 					delete prev;
@@ -55,13 +55,13 @@ class TablaHash
 		// Retorna el ID existente si estaba o el nuevo si no.
 		// Recibe un puntero a un contador para asignar nuevos IDs automáticamente.
 		int insertar(const std::string& key, int& counter)
-	       	{
+		{
 			unsigned int indice = hashFunction(key);
 			HashNode* entry = tabla[indice];
 
 			// Busca si ya existe 
 			while (entry != nullptr)
-		       	{
+			{
 				if (entry->key == key) {return entry->value;}
 				entry = entry->next;
 			}
@@ -90,10 +90,14 @@ long long caminos(int current, int target, const Grafo& grafo, TablaMemo& memo)
 	return memo[current] = total;
 }
 
-void solucion() 
+void solucion(const std::string& ruta_archivo) 
 {
-	std::ifstream file("datosAOC11.txt");
-	if (!file.is_open()) return;
+	std::ifstream file(ruta_archivo);
+	if (!file.is_open())
+	{
+		std::cerr << "No se pudo abrir '" << ruta_archivo << "'.\n";
+		return;
+	}
 
 	TablaHash mapa;
 	int ids = 0; // Generador de IDs 
@@ -139,8 +143,13 @@ void solucion()
 	std::cout << "Total de caminos: " << resultado << std::endl;
 }
 
-int main() 
+int main(int argc, char* argv[]) 
 {
-	solucion();
+	if (argc < 2)
+	{
+		std::cerr << "Uso correcto: " << argv[0] << " <ruta_del_archivo>\n";
+		return 1; // Error, salimos del programa
+	}
+	solucion(argv[1]);
 	return 0;
 }

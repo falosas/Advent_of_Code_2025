@@ -1,7 +1,5 @@
 Memoria Advent of Code 2025 - Día 8
 
-Problema: Day 8 - Playground 
-
 1. Justificación
 
 Elegí este problema porque marca la transición de estructuras de datos lineales a Teoría de Grafos. 
@@ -86,16 +84,20 @@ Este ejercicio consolida la importancia de reconocer patrones abstractos en prob
 He aprendido que "aplanar" la estructura de clases (pasar de class DSU a funciones sueltas) no reduce la sofisticación del algoritmo, sino que a veces mejora la legibilidad. 
 La combinación de Kruskal + DSU ha demostrado ser una herramienta indispensable en mi arsenal.
 
-7. INSTRUCCIONES DE EJECUCION DE CODIGOS
+7. Instrucciones de compilación y ejecución
 
-    Poner todos los archivos (main.cpp, datosAOC8.txt, Makefile si lo hubiera) en una misma carpeta.
+    1. Estructura de Directorios Asegúrate de mantener la estructura del proyecto. El archivo Makefile debe estar en la raíz, y los códigos fuente junto con sus archivos de datos dentro de sus carpetas correspondientes.
 
-    Para compilar, ejecutar en la terminal:
+    2. Compilación Desde la terminal en la carpeta raíz del proyecto, ejecuta una de las siguientes opciones:
 
-        make bin/AOC8 
-        make bin/AOC8-2
+    Compilar programas:
 
-    Ejecutar el programa:
+      make bin/AOC8
+    
+      make bin/AOC8-2
+    
+    3. Ejecución, el programa requiere que le indiques la ruta del archivo de datos como argumento. Ejecuta el comando referenciando el binario y la ruta relativa del archivo de texto:
 
-        ./bin/AOC8
-        ./bin/AOC8-2
+      ./bin/AOC8 Dia-8/datosAOC8.txt
+    
+      ./bin/AOC8-2 Dia-8/datosAOC8.txt
